@@ -1,0 +1,208 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block extrahead %}
+  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+  <style>
+    body {
+      background: #e3ecf1;
+    }
+
+
+    /* Django Jet */
+    h1#site-name a {
+      font-size: 2em;
+      font-weight: 900;
+      color: #F95353 !important;
+    }
+
+    td.field-memo_tm {
+      font-size: 1.1em;
+    }
+
+    ul.object-tools.initialized {
+      height: 33px;
+      display: block;
+    }
+
+    textarea.vLargeTextField {
+      font-size: 1.2em;
+    }
+
+    ul.object-tools li {
+      float: left;
+    }
+
+    fieldset.module {
+      display: block;
+      width: 97%;
+    }
+
+    .button.default, input[type="submit"].default, input[type="button"].default, .object-tools a.default {
+      background-color: #F95353 !important;
+    }
+
+    #changelist .actions .button, #changelist .actions .button:visited, #changelist .actions .button:hover {
+      background-color: #F95353 !important;
+    }
+
+    tbody tr.row1 {
+      background: #FAFAFA;
+    }
+
+    #result_list > tbody > tr > td.field-status > span, #result_list > tbody > tr > td.field-is_hide > span, #result_list > tbody > tr > td.field-is_hide > span {
+      width: 100px;
+      min-width: 100px;
+      max-width: 100px;
+    }
+
+    table.helper {
+      display: none !important;
+    }
+
+    td.field-redevelopment_area__redevelopment_step {
+      width: 120px;
+      min-width: 120px;
+      max-width: 120px;
+    }
+
+    fieldset .form-row:nth-child(odd) {
+      background: rgba(0, 0, 0, 0.01);
+    }
+
+    #house_form > div > fieldset.module.aligned.module_8.initialized > div.form-row.field-num_ho > div > label {
+      /*font-weight: 900;*/
+      color: red;
+    }
+
+    @media screen and (min-width: 768px) {
+      ul.changeform-tabs {
+        border-radius: 12px !important;
+      }
+
+      .changeform-tabs-item.selected a, .changeform-tabs-item.selected a:hover, .changeform-tabs-item.selected a:visited {
+        border-width: 3px;
+        border-color: #F95353;
+      }
+
+      form fieldset.module {
+        display: block !important;
+        border-radius: 12px !important;
+      }
+
+      form fieldset.module.selected {
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-color: #F95353 !important;
+      }
+
+      form .js-inline-admin-formset.inline-group {
+        display: block !important;
+        margin-top: 21px;
+        border-radius: 12px !important;
+        overflow: hidden;
+      }
+
+      .changeform-tabs ~ .module, .changeform-tabs ~ .inline-group {
+        display: block !important;
+        margin-top: 21px;
+        border-radius: 12px !important;
+        overflow: hidden;
+      }
+
+      input[type="text"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], textarea, select, .vTextField, .note-editor.note-frame, .select2-container--jet .select2-selection {
+        border: 0.07143rem solid #F95353 !important;
+      }
+
+      .select2-container--jet .select2-dropdown, .input[type="text"]:focus, fieldset.module input[type="text"]:focus, input[type="email"]:focus, fieldset.module input[type="email"]:focus, input[type="password"]:focus, fieldset.module input[type="password"]:focus, input[type="url"]:focus, fieldset.module input[type="url"]:focus, input[type="number"]:focus, fieldset.module input[type="number"]:focus, textarea:focus, fieldset.module textarea:focus, select:focus, fieldset.module select:focus, .vTextField:focus, fieldset.module .vTextField:focus {
+        box-shadow: 0 0 4px 0 #F95353 !important;
+      }
+
+    .select2-container--jet {
+      min-width: 250px;
+    }
+
+    fieldset.module.aligned.initialized > div.form-row div > label {
+        width: 240px;
+    }
+
+    #redevelopmentarea_form > div > fieldset.module.aligned.initialized > div.form-row div > label {
+        width: 240px;
+    }
+
+    #result_list > thead > tr > th.sortable.column-status > div.text > a, #result_list > thead > tr > th.sortable.column-title > div.text > a {
+      color: yellow;
+    }
+
+    #group_form > div > fieldset > div.form-row.field-permissions > div > div > span > span.selection > span {
+      margin-left: 240px;
+    }
+
+    fieldset.module.aligned.initialized > div.form-row > div > ul {
+      margin-left: 240px;
+    }
+
+    div.form-row > div > p.help {
+      margin-left: 240px;
+    }
+
+    div.form-row ul > li > label > input {
+      display: inline-block;
+    }
+
+    #result_list > thead > tr > th.column-redevelopment_area > div.text > a,
+    #result_list > thead > tr > th.column-user__name > div.text > span,
+    #result_list > thead > tr > th.column-user__email > div.text > span,
+    #result_list > thead > tr > th.column-user__phone > div.text > span,
+    #result_list > thead > tr > th.column-redevelopment_area > div.text > a,
+    #result_list > thead > tr > th.sortable.column-title_building > div.text > a,
+    #result_list > thead > tr > th.sortable.column-city > div.text > a,
+    #result_list > thead > tr > th.sortable.column-subcity > div.text > a,
+    #result_list > thead > tr > th.sortable.column-location > div.text > a
+    {
+      color: orange;
+    }
+
+    #changelist-form > div.changelist-footer.fixed > p > a,
+    #changelist-form > div.changelist-footer.fixed > p > span.this-page {
+      padding-left: 10px;
+    }
+
+    #result_list > thead > tr > th.sortable.column-type_house {
+      min-width: 100px;
+    }
+
+    body > table > thead > tr > th.action-checkbox-column {
+        min-width:16px !important;
+    }
+  }
+
+  </style>
+  <script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var elements_titles = document.querySelectorAll("form > div > ul > li > a")
+    var titles = [...elements_titles].map(element => element.innerText);
+
+    var elements_sections = document.querySelectorAll("form > div > fieldset.module");
+
+    for(var i=0; i<elements_sections.length; i++){
+      var title = titles[i];
+      var elements_section = elements_sections[i];
+      var elements_title = elements_titles[i];
+      var node = document.createElement("h1");                 // Create a <li> node
+
+      var textnode = document.createTextNode(title);         // Create a text node
+      node.appendChild(textnode);                              // Append the text to <li>
+      elements_section.insertBefore(node, elements_section.firstChild);
+
+      elements_title.addEventListener("click", function(e){
+        var node = e.target;
+        var index = Array.prototype.indexOf.call(node.parentNode.parentNode.childNodes, node.parentNode);
+        elements_sections[index].scrollIntoView();
+        console.log(node.parentNode, node, index)
+      });
+    }
+
+  })
+  </script>
+{% endblock %}
