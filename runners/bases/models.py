@@ -42,6 +42,8 @@ class Model(UpdateMixin, TimeStampedModel, models.Model):
     is_active = models.BooleanField('활성화 여부', default=True, blank=True, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
+    __is_deleted = None
+
     class Meta:
         abstract = True
 
@@ -56,6 +58,15 @@ class Model(UpdateMixin, TimeStampedModel, models.Model):
         super(Model, self).__init__(*args, **kwargs)
         self._meta.get_field("created").verbose_name = _("생성일")
         self._meta.get_field("modified").verbose_name = _("수정일")
+        self.__is_deleted = self.is_deleted
+
+    def save(self, *args, **kwargs):
+        # 삭제 취소
+        if self.__is_deleted != self.is_deleted and not self.is_deleted:
+            self.is_deleted = False
+            self.deleted = None
+
+        return super(Model, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         self.is_active = False
