@@ -48,9 +48,6 @@ class UserViewSet(mixins.CreateModelMixin,
                                              response={200: UserSerializer}
                                              ))
     def list(self, request, *args, **kwargs):
-        user = request.user
-        print('user : ', user)
-
         return super().list(self, request, *args, **kwargs)
 
     @swagger_auto_schema(**swagger_decorator(tag='유저',

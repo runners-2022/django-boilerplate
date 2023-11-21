@@ -2,7 +2,7 @@
 from rest_framework_nested import routers
 
 # Views
-from runners.apps.users.api.views.index import UserViewSet
+from runners.apps.users.api.views import UserViewSet
 
 # Router
 router = routers.SimpleRouter(trailing_slash=False)
@@ -11,4 +11,5 @@ router = routers.SimpleRouter(trailing_slash=False)
 router.register('users', UserViewSet)
 
 app_name = 'api'
-urlpatterns = router.urls
+urlpatterns = [
+              ] + router.urls

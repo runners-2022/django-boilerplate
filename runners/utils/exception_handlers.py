@@ -7,44 +7,13 @@ from django.utils.translation import ugettext_lazy as _
 
 # Django Rest Framework
 from rest_framework.settings import api_settings
-from rest_framework import status, exceptions
-from rest_framework.exceptions import APIException, _get_error_details
+from rest_framework import status
 
 # Third Party
 from drf_pretty_exception_handler import exception_handler
 
 # Local
 from runners.utils.api.response import Response
-
-
-class CustomForbiddenException(exceptions.APIException):
-    status_code = status.HTTP_403_FORBIDDEN
-    default_code = 'error'
-
-    def __init__(self, detail, status_code=None):
-        self.detail = detail
-        if status_code is not None:
-            self.status_code = status_code
-
-
-class CustomBadRequestError(APIException):
-    status_code = status.HTTP_400_BAD_REQUEST
-    default_detail = _('Invalid input.')
-    default_code = 'invalid'
-
-    def __init__(self, detail=None, code=None):
-        if detail is None:
-            detail = self.default_detail
-        if code is None:
-            code = self.default_code
-
-        if isinstance(detail, tuple):
-            detail = list(detail)
-        elif not isinstance(detail, dict) and not isinstance(detail, list):
-            detail = [detail]
-
-        self.detail = _get_error_details(detail, code)
-
 
 logger = logging.getLogger(__name__)
 

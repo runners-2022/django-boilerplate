@@ -14,17 +14,19 @@ from drf_yasg import openapi
 
 # Main Section
 def swagger_decorator(
-        tag,
-        id=None,
-        description='',
-        request=None,
-        response=None,
+    tag,
+    id=None,
+    description='',
+    request=None,
+    response=None,
+    method=None
 ):
     data = dict(
         operation_id=_(id),
         operation_description=_(description),
         tags=[tag],
-        responses={}
+        responses={},
+        method=method
     )
 
     if request:
@@ -53,61 +55,6 @@ def swagger_decorator(
             data['responses'][response_code] = openapi.Response(_(message), serializer)
 
     return data
-
-
-def create_decorator(title=''):
-    return dict(
-        operation_id=_('생성'),
-        operation_description=_(
-            '## < 객체 생성 API 입니다. > \n'
-        ),
-        responses={201: openapi.Response(_('created'))},
-        tags=[_(f'{title}')]
-    )
-
-
-def list_decorator(title='', serializer=None):
-    return dict(
-        operation_id=_('리스트 조회'),
-        operation_description=_(
-            '## < 리스트 조회 API 입니다. > \n'
-        ),
-        responses={200: openapi.Response(_('ok'), serializer)},
-        tags=[_(f'{title}')],
-    )
-
-
-def retrieve_decorator(title='', serializer=None):
-    return dict(
-        operation_id=_('객체 조회'),
-        operation_description=_(
-            '## < 객체 조회 API 입니다. > \n'
-        ),
-        responses={200: openapi.Response(_('ok'), serializer)},
-        tags=[_(f'{title}')],
-    )
-
-
-def patch_decorator(title=''):
-    return dict(
-        operation_id=_('수정'),
-        operation_description=_(
-            '## < 객체 수정 API 입니다. > \n'
-        ),
-        responses={200: openapi.Response(_('ok'))},
-        tags=[_(f'{title}')],
-    )
-
-
-def destroy_decorator(title=''):
-    return dict(
-        operation_id=_('삭제'),
-        operation_description=_(
-            '## < 객체 삭제 API 입니다. > \n'
-        ),
-        responses={204: openapi.Response(_('no content'))},
-        tags=[_(f'{title}')]
-    )
 
 
 def cache_decorator(suggest_type, timeout=1800):

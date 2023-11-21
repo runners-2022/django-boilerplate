@@ -241,8 +241,8 @@ MIDDLEWARE = [
     'admin_reorder.middleware.ModelAdminReorder',
 ]
 
-# # STORAGES
-# # ------------------------------------------------------------------------------
+# STORAGES
+# ------------------------------------------------------------------------------
 # # https://django-storages.readthedocs.io/en/latest/#installation
 # INSTALLED_APPS += ["storages"]  # noqa F405
 # # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
@@ -269,9 +269,9 @@ MIDDLEWARE = [
 # # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#cloudfront
 # AWS_S3_CUSTOM_DOMAIN = env("DJANGO_AWS_S3_CUSTOM_DOMAIN", default=None)
 # aws_s3_domain = AWS_S3_CUSTOM_DOMAIN or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-
-# AWS STATIC / MEDIA
-# ------------------------
+#
+# # AWS STATIC / MEDIA
+# # ------------------------
 # STATICFILES_STORAGE = "runners.utils.storages.StaticRootS3Boto3Storage"
 # COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 # STATIC_URL = f"https://{aws_s3_domain}/static/"
