@@ -10,6 +10,7 @@ from rest_framework import permissions
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
+# Main Section
 description = _(
     """
 러너스 백엔드 서버 API 문서입니다.
@@ -47,14 +48,11 @@ description = _(
 <br/>"""
 )
 
-# Only expose to public in local and development.
 public = bool(settings.DJANGO_ENV in ('local',))
 
-# Fully exposed to only for local, else at least should be staff.
 if settings.DJANGO_ENV == "local":
     permission_classes = (permissions.AllowAny,)
 else:
-    # permission_classes = (permissions.IsAdminUser,)
     permission_classes = (permissions.AllowAny,)
 
 schema_url_patterns = [
@@ -63,11 +61,9 @@ schema_url_patterns = [
 
 schema_view = get_schema_view(
     openapi.Info(
-        title=_("러너스 API 문서"),
+        title="러너스 API 문서",
         default_version="v1",
         description=description,
-        # contact=openapi.Contact(email=""),
-        # license=openapi.License(name=""),
     ),
     public=public,
     permission_classes=permission_classes,

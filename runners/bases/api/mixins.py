@@ -1,18 +1,18 @@
 # Django
-from django.utils.translation import gettext_lazy as _
 from django.utils.decorators import method_decorator
 
-# Django Rest Framework
+# DRF
 from rest_framework import status
 
 # Third Party
 from drf_yasg.utils import swagger_auto_schema
 
-# Local
+# Utils
 from runners.utils.api.response import Response
 
 
-@method_decorator(name='create', decorator=swagger_auto_schema(operation_id=_('생성')))
+# Main Section
+@method_decorator(name='create', decorator=swagger_auto_schema(operation_id='생성'))
 class CreateModelMixin:
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -21,7 +21,7 @@ class CreateModelMixin:
             return Response(
                 status=status.HTTP_201_CREATED,
                 code=201,
-                message=_('ok'),
+                message='ok',
                 data=serializer.data
             )
 
@@ -29,7 +29,7 @@ class CreateModelMixin:
         return serializer.save()
 
 
-@method_decorator(name='list', decorator=swagger_auto_schema(operation_id=_('리스트 조회')))
+@method_decorator(name='list', decorator=swagger_auto_schema(operation_id='리스트 조회'))
 class ListModelMixin:
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -41,12 +41,12 @@ class ListModelMixin:
         return Response(
             status=status.HTTP_200_OK,
             code=200,
-            message=_('ok'),
+            message='ok',
             data=serializer.data
         )
 
 
-@method_decorator(name="retrieve", decorator=swagger_auto_schema(operation_id=_('객체 조회')))
+@method_decorator(name="retrieve", decorator=swagger_auto_schema(operation_id='객체 조회'))
 class RetrieveModelMixin:
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -54,12 +54,12 @@ class RetrieveModelMixin:
         return Response(
             status=status.HTTP_200_OK,
             code=200,
-            message=_('ok'),
+            message='ok',
             data=serializer.data
         )
 
 
-@method_decorator(name="partial_update", decorator=swagger_auto_schema(operation_id=_('수정')))
+@method_decorator(name="partial_update", decorator=swagger_auto_schema(operation_id='수정'))
 class UpdateModelMixin(object):
     def partial_update(self, request, *args, **kwargs):
         partial = True
@@ -72,7 +72,7 @@ class UpdateModelMixin(object):
         return Response(
             status=status.HTTP_200_OK,
             code=200,
-            message=_('ok'),
+            message='ok',
             data=serializer.data
         )
 
@@ -80,7 +80,7 @@ class UpdateModelMixin(object):
         serializer.save()
 
 
-@method_decorator(name="destroy", decorator=swagger_auto_schema(operation_id=_('삭제')))
+@method_decorator(name="destroy", decorator=swagger_auto_schema(operation_id='삭제'))
 class DestroyModelMixin:
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -88,7 +88,7 @@ class DestroyModelMixin:
         return Response(
             status=status.HTTP_204_NO_CONTENT,
             code=200,
-            message=_('ok'),
+            message='ok',
         )
 
     def perform_destroy(self, instance):

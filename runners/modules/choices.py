@@ -1,7 +1,8 @@
+# Django
 from model_utils import Choices
-from django.utils.translation import gettext_lazy as _
 
+# Main Section
 GENDER_TYPE_CHOICES = Choices(
-    ('Female', _('여성')),
-    ('Male', _('남성'))
+    ('Female', '여성'),
+    ('Male', '남성')
 )

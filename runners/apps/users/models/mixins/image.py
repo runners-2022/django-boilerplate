@@ -3,7 +3,6 @@ import datetime
 
 # Django
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 # Utils
 from runners.utils.medias import upload_path
@@ -17,8 +16,8 @@ def profile_image_path(instance, filename):
 
 # Main Section
 class UserImageModelMixin(models.Model):
-    profile_image = models.ImageField(_('프로필 이미지'), upload_to=profile_image_path, null=True, blank=True)
-    profile_image_url = models.URLField(_('프로필 이미지 URL'), null=True, blank=True)
+    profile_image = models.ImageField('프로필 이미지', upload_to=profile_image_path, null=True, blank=True)
+    profile_image_url = models.URLField('프로필 이미지 URL', null=True, blank=True)
 
     class Meta:
         abstract = True

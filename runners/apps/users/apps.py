@@ -1,12 +1,11 @@
 # Django
 from django.apps import AppConfig
-from django.utils.translation import gettext_lazy as _
 
 
 # Main Section
 class UsersConfig(AppConfig):
     name = 'runners.apps.users'
-    verbose_name = _('유저')
+    verbose_name = '유저'
 
     def ready(self):
         try:

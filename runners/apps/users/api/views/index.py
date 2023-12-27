@@ -1,5 +1,4 @@
 # Django
-from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 
 # DRF
@@ -40,11 +39,11 @@ class UserViewSet(mixins.CreateModelMixin,
     filter_backends = (DjangoFilterBackend, AdvancedSearchFilter, OrderingFilter)
     filterset_class = UserFilter
     search_fields = ('email',)
-    ordering_fields = ('point', 'created')
+    ordering_fields = ('created',)
 
-    @swagger_auto_schema(**swagger_decorator(tag=_('유저'),
-                                             id=_('리스트 조회'),
-                                             # description=_(''),
+    @swagger_auto_schema(**swagger_decorator(tag='유저',
+                                             id='리스트 조회',
+                                             description='',
                                              response={200: UserSerializer}
                                              ))
     def list(self, request, *args, **kwargs):
@@ -52,7 +51,7 @@ class UserViewSet(mixins.CreateModelMixin,
 
     @swagger_auto_schema(**swagger_decorator(tag='유저',
                                              id='객체 조회',
-                                             # description='',
+                                             description='',
                                              response={200: UserSerializer}
                                              ))
     def retrieve(self, request, *args, **kwargs):
@@ -60,7 +59,7 @@ class UserViewSet(mixins.CreateModelMixin,
 
     @swagger_auto_schema(**swagger_decorator(tag='유저',
                                              id='생성',
-                                             # description='',
+                                             description='',
                                              request=UserSerializer,
                                              response={201: 'ok'}
                                              ))
@@ -69,7 +68,7 @@ class UserViewSet(mixins.CreateModelMixin,
 
     @swagger_auto_schema(**swagger_decorator(tag='유저',
                                              id='수정',
-                                             # description='',
+                                             description='',
                                              request=UserSerializer,
                                              response={200: 'ok'}
                                              ))
@@ -78,7 +77,7 @@ class UserViewSet(mixins.CreateModelMixin,
 
     @swagger_auto_schema(**swagger_decorator(tag='유저',
                                              id='삭제',
-                                             # description='',
+                                             description='',
                                              response={204: 'no content'}))
     def destroy(self, request, *args, **kwargs):
         return super().destroy(self, request, *args, **kwargs)
