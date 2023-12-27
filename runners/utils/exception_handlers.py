@@ -5,14 +5,14 @@ import traceback
 # Django
 from django.utils.translation import ugettext_lazy as _
 
-# Django Rest Framework
+# DRF
 from rest_framework.settings import api_settings
 from rest_framework import status
 
 # Third Party
 from drf_pretty_exception_handler import exception_handler
 
-# Local
+# Utils
 from runners.utils.api.response import Response
 
 logger = logging.getLogger(__name__)

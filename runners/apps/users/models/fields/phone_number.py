@@ -1,4 +1,4 @@
-# Django Rest Framework
+# DRF
 from phonenumber_field.modelfields import PhoneNumberField
 
 # Utils

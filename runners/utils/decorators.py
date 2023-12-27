@@ -5,7 +5,7 @@ from functools import wraps
 from django.utils.translation import gettext_lazy as _
 from django.core.cache import cache
 
-# Django Rest Framework
+# DRF
 from rest_framework.serializers import SerializerMetaclass
 
 # Third Party

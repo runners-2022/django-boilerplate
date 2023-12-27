@@ -68,7 +68,7 @@ django-extra-fields==3.0.2
 drf-yasg==1.21.4
 
 
-# Django REST Framework
+# DRF
 # ------------------------------------------------------------------------------
 djangorestframework==3.14.0
 drf-nested-routers==0.93.4

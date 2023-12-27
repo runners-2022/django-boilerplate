@@ -40,6 +40,7 @@ class UserAdmin(Admin, UserAdmin):
 
     def profile_image_tag(self, obj):
         profile_image_url = None
+
         if obj.profile_image_url:
             profile_image_url = obj.profile_image_url
 

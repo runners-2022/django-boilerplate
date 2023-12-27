@@ -2,7 +2,7 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
-# Django Rest Framework
+# DRF
 from rest_framework.authtoken.models import Token
 
 # Models
