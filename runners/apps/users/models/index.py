@@ -1,6 +1,6 @@
 # Django
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, EmailField
+from django.db import models
 
 # Fields
 from runners.apps.users.models.fields import PhoneNumberField
@@ -19,9 +19,9 @@ from runners.bases.models import Model
 class User(UserImageModelMixin,
            AbstractUser,
            Model):
-    name = CharField(verbose_name='이름', max_length=255, null=True, blank=True)
-    username = CharField(verbose_name='닉네임', max_length=255, null=True, blank=True)
-    email = EmailField(verbose_name='이메일', unique=True)
+    name = models.CharField(verbose_name='이름', max_length=255, null=True, blank=True)
+    username = models.CharField(verbose_name='닉네임', max_length=255, null=True, blank=True)
+    email = models.EmailField(verbose_name='이메일', unique=True)
     phone = PhoneNumberField(verbose_name='전화번호', max_length=20, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
